@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		crossorigin=""/>
+		<meta charset='utf-8'>
+	  <meta name='viewport' content='width=device-width'>
+	  <title>Community Hero Demo</title>
+	  <style> body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:1em; }
+	  #mapid { height: 400px;} 
+	</style>
+	</head>
+	<body>
+		<h2>Demo Instructions</h2>
+		<p>During the limited time that we had during the hackathon, we managed to make 4 completely different interfaces that the user can use. One is Facebook Messenger (which we consider to be the most polished of the 3), an e-shop, an SMS service, and a Delivery Portal.</p>
+		<p>Even though we didn't show everything in the video, everything mentioned above is implemented and fully functional. However, there are some limitations in which we unfortunately do not have any input:</p>
+		<ul>
+			<li>Our Facebook Messenger bot needs to pass through human verification at Facebook before going "live". We submitted this on Sunday morning, but it has still not finished at this time</li>
+			<li>We do not wish to share our phone numbers in public, but the SMS gateway we are using is using our own mobile phone numbers. Therefore, we can not demo the SMS service as SMS.</li>
+		</ul>
+		<p>However, like every problem, these have solutions, despite not the best, given that we didn't have enough time</p> 
+		<ul>
+			<li>In order to demo the Facebook messenger chatbot, if you are comfortable doing this, you can send us your facebook profile through the form below, and you will be added as a tester. If you don't have a facebook account or do not feel comfortable sharing with us, that is still fine. You can send us a message saying so, and we will try to give you a "fake" Facebook account so that you can test our bot</li>
+			<li>We made a different frontend for the SMS that is web-based. However, this is exactly the same as the original SMS service in terms of functionality. You can send a message from any "phone number" you want and see how the bot would respond. The backend used is exactly the same, but a JS-based frontend is used instead of a Java-based Android app acting as an SMS gateway</li>
+		</ul>
+		<p>We would recommend that you try out the different demos in the following order:</p>
+		<ol>
+			<li>Messenger chatbot: fill out <a href='https://forms.gle/dkxebCNE4jdBi3d19'>this form</a>. We will contact you within 15 minutes</li>
+			<li>SMS chatbot: As mentioned above, for demonstration purposes this is shown as a web-app: <a href='https://sms.communityhero.live'>https://sms.communityhero.live</a></li>
+			<li>e-shop: <a href='https://communityhero.me'>https://communityhero.me</a> (this is not fully implemented, you may experience some issues)</li>
+			<li>Delivery portal: <a href="https://delivery.communityhero.live">https://delivery.communityhero.live</a> (even though a log in screen is presented, logging in is not implemented yet. You can just press log in without filling the username/password fields)</li>
+		</ol>
+		Since our database currently only has a limited number of stores in the same city in Cyprus, we would recommend that whenever prompted, enter an address within the region below:
+		<div id="mapid"></div>
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+		integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		crossorigin=""></script>
+		<script>
+			var mymap = L.map('mapid').setView([35.1748, 33.3834], 13);
+			L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				maxZoom: 18,
+				id: 'mapbox/streets-v11',
+				tileSize: 512,
+				zoomOffset: -1,
+				accessToken: 'pk.eyJ1IjoiY2ZhbGFzIiwiYSI6ImNrOGhmZDNhNTAwN3czZm1jcjdqYnVwcTYifQ.DFTZF3tuUwz8zEJ_WczQYw'
+			}).addTo(mymap);
+			var circle = L.circle([35.1618, 33.3634], {
+				fillOpacity: 0.1,
+				radius: 5000
+			}).addTo(mymap);
+		</script>
+	</body>
+	
+	</html>
+	  
